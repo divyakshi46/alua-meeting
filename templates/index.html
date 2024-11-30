@@ -1,0 +1,263 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% csrf_token%}
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #091733;
+            padding: 10px 20px;
+        }
+
+        #nav_content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        #nav_content a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 5px;
+            font-size: 1.2rem;
+            padding-right: 80px;
+        }
+
+        #logo {
+            padding-right: 500px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        img {
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .caption {
+            text-align: center;
+            padding: 5% 2%;
+            background-color: #f4f4f4;
+        }
+
+        .caption h1 {
+            font-size: 2rem;
+        }
+
+        .caption h2 {
+            font-size: 1.5rem;
+        }
+
+        .meeting-options {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .meeting-options a {
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1rem;
+            margin: 10px;
+            text-align: center;
+        }
+
+        .about {
+            background-color: rgba(9, 23, 51, 0.85);
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        .about div {
+            margin: 20px auto;
+            max-width: 90%;
+            text-align: left;
+        }
+
+        .about h3 {
+            font-size: 1.5rem;
+        }
+
+        .about p {
+            font-size: 1rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #091733;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (min-width: 768px) {
+            .caption h1 {
+                font-size: 2.5rem;
+            }
+
+            .caption h2 {
+                font-size: 2rem;
+            }
+
+            .meeting-options a {
+                font-size: 1.2rem;
+                padding: 15px 30px;
+            }
+
+            .about div {
+                display: inline-block;
+                vertical-align: top;
+                width: 30%;
+            }
+
+            .about h3 {
+                font-size: 1.75rem;
+            }
+
+            .about p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .caption h1 {
+                font-size: 3rem;
+            }
+
+            .caption h2 {
+                font-size: 2.5rem;
+            }
+
+            .about div {
+                width: 28%;
+            }
+
+            #nav_content a {
+                font-size: 1.3rem;
+            }
+
+            footer {
+                font-size: 1rem;
+            }
+        }
+
+        /* Mobile-specific Adjustments */
+        @media (max-width: 767px) {
+            #nav_content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            #logo {
+                margin-bottom: 10px;
+            }
+
+            .caption h1, .caption h2 {
+                font-size: 1.5rem;
+                padding: 0 10px;
+            }
+
+            .meeting-options a {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .about div {
+                width: 100%;
+                text-align: left;
+            }
+
+            .about h3 {
+                font-size: 1.2rem;
+            }
+
+            .about p {
+                font-size: 0.9rem;
+            }
+
+            footer {
+                font-size: 0.8rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div id="nav_content">
+            <img src="/static/assests/images/images.png" alt="Alua">
+            <a id="logo"><em style="color: #D6BD98;">Alua</em> Meeting</a>
+            <nav>
+                <a href="blog">Blog</a>
+                <a href="support">Support</a>
+                <a href="contact">Contact Us</a>
+                {% if user.is_authenticated %}
+                <a href="logout">Logout</a>
+                {% else %}
+                <a href="register">Login/sign up</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+    
+    <div class="caption">
+        {% if user.is_authenticated %}
+        <h2>Welcome, {{user.username}}</h2>
+        {% else %}
+        <h2>Welcome, Please login or sign up</h2>
+        {% endif %}
+        <h1><em style="color: #D6BD98; font-weight: bold;">Alua</em> Meet: Simple, Versatile, and Always There – Just Like a <em style="color: #D6BD98; font-weight: bold;">Potato!</em></h1>
+          
+        <div class="meeting-options">
+            <a href="/meeting" style="background-color: #091733; color: #fff;">New Meeting</a>
+            <a href="/meeting" style="background-color: #D6BD98; color: #091733;">Join Meeting</a>
+        </div>
+    </div>
+
+    <div class="about">
+        <h2>About Us</h2>
+        <div id="What">
+            <h3>What is <em style="color: #D6BD98;font-weight: bold;">Alua?</em></h3>
+            <p>In the digital age, connections are more important than ever. 
+            Just like the humble potato, known as "Alua" in Hindi, 
+            which is a staple that brings people together across cultures, 
+            Alua Meeting is your go-to platform for connecting with ease and reliability. 
+            Whether it's a casual chat with friends, a business meeting, or a virtual event, 
+            Alua Meeting provides the tools you need to make every conversation count.</p>
+        </div>
+        
+        <div id="why">
+            <h3>Why <em style="color: #D6BD98;font-weight: bold;">Alua?</em></h3>
+            <p>Crystal Clear Video and Audio, Just as the potato is versatile and dependable, Alua Meeting offers high-definition video and crisp audio, ensuring that every interaction is clear and engaging. Like the simplicity of a potato, our platform is designed for ease of use. Whether you’re scheduling a meeting, sharing your screen, or chatting, Alua Meeting makes it effortless for everyone.</p>
+        </div>
+        
+        <div id="feature">
+            <h3>Features in <em style="color: #D6BD98;font-weight: bold;">Alua?</em></h3>
+            <p>Seamless Collaboration, Alua Meeting provides tools like screen sharing, collaborative whiteboards, and real-time chat to enhance teamwork, making it easy to work together no matter where you are.
+                Accessible to All, Alua Meeting is designed to be inclusive, ensuring that everyone can join the conversation, no matter their location or device.</p>
+        </div>
+    </div>
+        
+    <footer>&#169;2024-Present, Alua.com, Inc or its affiliates</footer>
+</body>
+</html>

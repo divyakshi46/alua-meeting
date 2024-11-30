@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meeting</title>
+  </head>
+  <body>
+    <h1>Loading your meeting...</h1>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("https://api.digitalsamba.com/api/v1/rooms/1", {
+          method: "GET",
+          headers: {
+            Authorization:
+              "Bearer MWVlY2I2ZTAtY2UyNi00ZmMzLTgwNGItY2JjYTQzNWM0NjgyOllKQzlhS0F5VHhvcGw0cHhOYWEzMVBKbFR6YmFnR0E1UkZnSERaVGkxdWV0Z0FHcmpzdjJLRVcwWkluODVTS1g=",
+          },
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            const roomUrl = data.data[0].room_url;
+            window.location.href = roomUrl;
+          })
+          .catch((error) => {
+            console.error("Error fetching meeting data:", error);
+            alert(
+              "There was an issue loading your meeting. Please try again or contact support."
+            );
+          });
+      });
+    </script>
+  </body>
+</html>

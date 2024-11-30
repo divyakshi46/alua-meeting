@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alua Meeting - Register</title>
+    {% csrf_token %} 
+    <style>
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            text-align: center;
+        }
+
+        
+        h1 {
+            color: rgb(9 23 51 / 85%);
+            margin-bottom: 25px;
+        }
+
+        
+        h5 {
+            color: #dc3545; 
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin: 12px 0 5px;
+            color: #495057;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 5px 0 20px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        
+        input[type="submit"] {
+            background-color: rgb(9 23 51 / 85%); 
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: rgb(9 23 51 / 85%); 
+        }
+
+        
+        .signin-button {
+            margin-top: 20px;
+            color: rgb(9 23 51 / 85%);
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .signin-button:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h1><em style="color: #D6BD98;font-weight: bold;">Alua </em>Meet - Sign Up</h1>
+        {% for message in messages %}
+            <h5>{{message}}</h5>
+        {% endfor %}
+        <form method="POST" action="register">
+            {% csrf_token %}
+            <p>Username</p>
+            <input type="text" name="username">
+            <p>Email</p>
+            <input type="email" name="email">
+            <p>Password</p>
+            <input type="password" name="password">
+            <p>Confirm Password</p>
+            <input type="password" name="password2">
+            <input type="submit" value="Sign Up">
+        </form>
+        <a href="login" class="signin-button">Already have an account? Sign In</a>
+    </div>
+
+</body>
+</html>
+
